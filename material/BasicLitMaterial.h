@@ -2,6 +2,7 @@
 
 #include "../util/WeakPointer.h"
 #include "BaseLitMaterial.h"
+#include "ShaderMaterial.h"
 #include "../common/Constants.h"
 
 namespace Core {
@@ -10,7 +11,7 @@ namespace Core {
     class Engine;
     class Texture;
 
-    class BasicLitMaterial : public BaseLitMaterial {
+    class BasicLitMaterial : public ShaderMaterial<BaseLitMaterial> {
         friend class Engine;
 
     public:
@@ -18,6 +19,8 @@ namespace Core {
         virtual WeakPointer<Material> clone() override;
 
     protected:
+        BasicLitMaterial(const std::string& vertexShader, const std::string& fragmentShader);
+        BasicLitMaterial(const std::string& buildInShaderName);
         BasicLitMaterial();
     };
 }

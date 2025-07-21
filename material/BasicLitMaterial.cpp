@@ -6,15 +6,19 @@
 
 namespace Core {
 
-    BasicLitMaterial::BasicLitMaterial() {
+    BasicLitMaterial::BasicLitMaterial(const std::string& vertexShader, const std::string& fragmentShader):
+        ShaderMaterial<BaseLitMaterial>(vertexShader, fragmentShader)  {
+    }
+
+    BasicLitMaterial::BasicLitMaterial(const std::string& builtInShaderName):
+        ShaderMaterial<BaseLitMaterial>(builtInShaderName) {
+    }
+
+    BasicLitMaterial::BasicLitMaterial(): BasicLitMaterial("BasicLit") {
     }
 
     Bool BasicLitMaterial::build() {
-        WeakPointer<Graphics> graphics = Engine::instance()->getGraphicsSystem();
-        ShaderManager& shaderManager = graphics->getShaderManager();
-        this->shader = shaderManager.getShader("BasicLit");
-        graphics->activateShader(this->shader);
-        this->bindShaderVarLocations();
+        ShaderMaterial<BaseLitMaterial>::build();
         this->setLit(true);
         return true;
     }
