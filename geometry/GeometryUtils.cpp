@@ -56,6 +56,8 @@ namespace Core {
             for (UInt32 cy = 0; cy < vCells; cy++) {
                 Real bx = (Real)cx * cellWidth + left;
                 Real by = (Real)cy * cellHeight + bottom;
+                UNUSED(bx);
+                UNUSED(by);
 
                 UInt32 i0 = cx * (vCells + 1) + cy;
                 UInt32 i1 = i0 + 1;
@@ -80,14 +82,17 @@ namespace Core {
 
         gridPlane->enableAttribute(Core::StandardAttribute::Position);
         Core::Bool positionInited = gridPlane->initVertexPositions();
+        UNUSED(positionInited);
         gridPlane->getVertexPositions()->store(positions.data());
-        
+
         gridPlane->enableAttribute(Core::StandardAttribute::Normal);
         Core::Bool normalsInited = gridPlane->initVertexNormals();
+        UNUSED(normalsInited);
         gridPlane->getVertexNormals()->store(normals.data());
 
         gridPlane->enableAttribute(Core::StandardAttribute::AlbedoUV);
         Core::Bool uvsInited = gridPlane->initVertexAlbedoUVs();
+        UNUSED(uvsInited);
         gridPlane->getVertexAlbedoUVs()->store(uvs.data());
 
         gridPlane->getIndexBuffer()->setIndices(indices.data());
@@ -191,6 +196,7 @@ namespace Core {
 
         boxMesh->enableAttribute(StandardAttribute::FaceNormal);
         Bool faceNormalInited = boxMesh->initVertexFaceNormals();
+        UNUSED(faceNormalInited);
 
         boxMesh->calculateBoundingBox();
 
@@ -358,6 +364,7 @@ namespace Core {
 
         arrowMesh->enableAttribute(StandardAttribute::FaceNormal);
         Bool faceNormalInited = arrowMesh->initVertexFaceNormals();
+        UNUSED(faceNormalInited);
 
         arrowMesh->calculateBoundingBox();
         arrowMesh->calculateNormals(75.0f * Core::Math::DegreesToRads);
@@ -543,6 +550,7 @@ namespace Core {
 
         sphereMesh->enableAttribute(StandardAttribute::FaceNormal);
         Bool faceNormalInited = sphereMesh->initVertexFaceNormals();
+        UNUSED(faceNormalInited);
 
         sphereMesh->calculateBoundingBox();
         sphereMesh->calculateNormals(85.0f * Core::Math::DegreesToRads);
@@ -645,6 +653,7 @@ namespace Core {
 
         torusMesh->enableAttribute(StandardAttribute::FaceNormal);
         Bool faceNormalInited = torusMesh->initVertexFaceNormals();
+        UNUSED(faceNormalInited);
 
         torusMesh->calculateBoundingBox();
         torusMesh->calculateNormals(85.0f * Core::Math::DegreesToRads);

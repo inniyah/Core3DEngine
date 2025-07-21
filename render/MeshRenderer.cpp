@@ -247,17 +247,19 @@ namespace Core {
                     case LightType::Directional:
                         directionalLightIndex++;
                         shadowLightIndex++;
-                    break;
+                        break;
                     case LightType::Point:
                         pointLightIndex++;
                         shadowLightIndex++;
-                    break;
+                        break;
                     case LightType::Ambient:
                         ambientLightIndex++;
-                    break;
+                        break;
                     case LightType::AmbientIBL:
                         ambientIBLLightIndex++;
-                    break;
+                        break;
+                    default:
+                        break;
                 }
 
                 IntMask cullingMask = light->getCullingMask();

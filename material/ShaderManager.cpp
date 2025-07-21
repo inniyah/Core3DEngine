@@ -59,18 +59,23 @@ namespace Core {
                 case ShaderType::Vertex:
                     if (entry.vertexSource.size() > 0)
                         return processShaderSource(type, entry.vertexSource, params);
+                    break;
                 case ShaderType::Geometry:
                     if (entry.geometrySource.size() > 0)
                         return processShaderSource(type, entry.geometrySource, params);
+                    break;
                 case ShaderType::Fragment:
                     if (entry.fragmentSource.size() > 0)
-                        return processShaderSource(type, entry.fragmentSource, params);          
+                        return processShaderSource(type, entry.fragmentSource, params);
+                    break;
+                default:
+                    break;
             }
             if (entry.baseSource.size() > 0)
                 return processShaderSource(type, entry.baseSource, params);
         }
 
-        throw ShaderManagerException(std::string("Could not locate requested shader ") + name);
+        throw ShaderManagerException(std::string("Could not locate requested shader source ") + name);
     }
 
     WeakPointer<Shader> ShaderManager::getShader(const std::string& name) {
@@ -105,6 +110,8 @@ namespace Core {
 
             return entry.shader;
         }
+
+        throw ShaderManagerException(std::string("Could not locate requested shader ") + name);
     }
 
     std::string ShaderManager::processShaderSource(ShaderType type, const std::string& src, const IncludeParameterCollection& params) {
@@ -181,8 +188,8 @@ namespace Core {
                 std::stringstream paramNameStream;
                 while (e < varLine.size()) {
                     char testChar = varLine[e];
-                    int asc = (int)testChar;
-                    if (asc >= ASCII_ZERO && asc <= ASCII_NINE || asc >= ASCII_A && asc <= ASCII_Z || asc >= ASCII_a && asc <= ASCII_z) {
+                    unsigned int asc = (unsigned int)testChar;
+                    if (((asc >= ASCII_ZERO) && (asc <= ASCII_NINE)) || ((asc >= ASCII_A) && (asc <= ASCII_Z)) || ((asc >= ASCII_a) && (asc <= ASCII_z))) {
                         paramNameStream << testChar;
                         e++;
                     } else {

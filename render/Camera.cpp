@@ -98,6 +98,7 @@ namespace Core {
     void Camera::project(Vector3Base<Real>& vec) const {
         Core::Matrix4x4 projection = this->projectionMatrix;
         Real w = vec.getW();
+        UNUSED(w);
         projection.transform(vec);
     }
 

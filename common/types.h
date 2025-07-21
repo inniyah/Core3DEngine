@@ -41,4 +41,4 @@ namespace Core {
 
 }
 
-
+#define UNUSED(x) (void)(sizeof((x)))

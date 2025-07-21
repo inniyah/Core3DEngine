@@ -111,6 +111,7 @@ namespace Core {
         virtual UInt32 update(Real timeDelta) override {
             if (this->internalUpdate(timeDelta)) {
                 Real effectiveEmissionRate = 0.0f;
+                UNUSED(effectiveEmissionRate);
                 if (this->timeActive > 0.0f) effectiveEmissionRate = (Real)this->emitCount / this->timeActive;
                 Real toEmitThisFrame = this->emissionRate * this->timeActive - (Real)this->emitCount;
                 if (toEmitThisFrame >= 1.0f) {

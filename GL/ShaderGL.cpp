@@ -169,6 +169,8 @@ namespace Core {
                 return "fragment";
             case ShaderType::Geometry:
                 return "geometry";
+            default:
+                break;
         }
         return "";
     }
@@ -308,6 +310,8 @@ namespace Core {
 #else 
                 return GL_GEOMETRY_SHADER_EXT;
 #endif
+            default:
+                break;
         }
         return 0;
     }

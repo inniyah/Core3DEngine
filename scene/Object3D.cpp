@@ -119,6 +119,7 @@ namespace Core {
     Bool Object3D::addComponent(WeakPointer<Object3DComponent> component) {
         SceneObjectIterator<Object3DComponent> end = this->endIterateComponents();
         SceneObjectIterator<Object3DComponent> result = end;
+        UNUSED(result);
         for(SceneObjectIterator<Object3DComponent> itr = this->beginIterateComponents(); itr != end; ++itr) {
             // don't add component if it already is present in list
             if (component == *itr) {

@@ -36,6 +36,7 @@ namespace Core {
             this->renderAttributes.setParticleCount(maxActiveParticles);
         }
         Bool setParent = false;
+        UNUSED(setParent);
         for (UInt32 i = 0; i < particleSystem->getActiveParticleCount(); i++) {
             ParticleStatePtr& particleState = particleSystem->getParticleStatePtr(i);
             WeakPointer<Object3D> meshRoot = this->pointMeshRoots[i];

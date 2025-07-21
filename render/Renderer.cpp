@@ -866,6 +866,7 @@ namespace Core {
         Bool saveIndirectHDREnabled = viewDescriptor.indirectHDREnabled;
         WeakPointer<Material> saveOverrideMaterial = viewDescriptor.overrideMaterial;
         Bool saveSSAOEnabled = viewDescriptor.ssaoEnabled;
+        UNUSED(saveSSAOEnabled);
 
         viewDescriptor.indirectHDREnabled = false;
         viewDescriptor.hdrRenderTarget = WeakPointer<RenderTarget2D>::nullPtr();
@@ -888,6 +889,7 @@ namespace Core {
         Bool saveIndirectHDREnabled = viewDescriptor.indirectHDREnabled;
         WeakPointer<Material> saveOverrideMaterial = viewDescriptor.overrideMaterial;
         Bool saveSSAOEnabled = viewDescriptor.ssaoEnabled;
+        UNUSED(saveSSAOEnabled);
 
         viewDescriptor.indirectHDREnabled = false;
         viewDescriptor.hdrRenderTarget = WeakPointer<RenderTarget2D>::nullPtr();

@@ -88,7 +88,7 @@ namespace Core {
             std::shared_ptr<ParticleStateOperator> particleStateOperator = this->particleStateOperators[i];
             Bool stillAlive = particleStateOperator->updateState(statePtr, timeDelta);
             Real particleLifeTime = *statePtr.lifetime;
-            if (!stillAlive || particleLifeTime != 0.0f && *statePtr.age >= particleLifeTime) {
+            if (!stillAlive || ((particleLifeTime != 0.0f) && (*statePtr.age >= particleLifeTime))) {
                 return false;
             }
         }

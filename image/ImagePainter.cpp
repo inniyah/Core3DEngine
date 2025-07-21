@@ -35,7 +35,9 @@ namespace Core {
 
         Int32 dx = xInc > 0 ? 1 : -1;
         Int32 dy = yInc > 0 ? 1 : -1;
-     
+        UNUSED(dx);
+        UNUSED(dy);
+
         xInc = Math::iAbs(xInc);
         yInc = Math::iAbs(yInc);
 
@@ -147,6 +149,8 @@ namespace Core {
     void ImagePainter::clipLine(Int32& sx, Int32& sy, Int32& ex, Int32& ey) const {
         Int32 dx = ex - sx;
         Int32 dy = ey - sy;
+        UNUSED(dx);
+        UNUSED(dy);
 
         if (sx < 0) {
 

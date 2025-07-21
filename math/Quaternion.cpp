@@ -469,21 +469,24 @@ namespace Core {
     Vector3r Quaternion::eulerFromRotationMatrix(const Matrix4x4& mat) const {
 
         const Real* te = mat.getConstData();
-		const Real m11 = te[ 0 ];
+        const Real m11 = te[ 0 ];
         const Real m12 = te[ 4 ];
         const Real m13 = te[ 8 ];
-		const Real m21 = te[ 1 ];
+        const Real m21 = te[ 1 ];
         const Real m22 = te[ 5 ];
         const Real m23 = te[ 9 ];
-		const Real m31 = te[ 2 ];
+        const Real m31 = te[ 2 ];
         const Real m32 = te[ 6 ];
         const Real m33 = te[ 10 ];
+
+        UNUSED(m21);
+        UNUSED(m31);
 
         Real x;
         Real y;
         Real z;
 
-		// XYZ:
+        // XYZ:
         y = Math::aSin( Math::clamp( m13, -1.0f, 1.0f ) );
         if ( Math::abs( m13 ) < 0.9999999f ) {
             x = Math::aTan2( -m23, m33 );

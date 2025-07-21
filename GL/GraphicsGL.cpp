@@ -34,7 +34,9 @@ namespace Core {
         printGlString("Extensions", GL_EXTENSIONS);
 
         UInt32 maxGL = 0;
+        UNUSED(maxGL);
         const char* versionStr = (const char*)glGetString(GL_VERSION);
+        UNUSED(versionStr);
         this->defaultRenderTarget = this->createDefaultRenderTarget();
         this->currentRenderTarget = this->defaultRenderTarget;
         this->shaderDirectory.init();
@@ -484,6 +486,8 @@ namespace Core {
                 return GL_LEQUAL;
             case RenderState::DepthFunction::Equal:
                 return GL_EQUAL;
+            default:
+                break;
         }
         return -1;
     }
@@ -496,23 +500,25 @@ namespace Core {
         GLenum target;
         switch (side) {
             case CubeTextureSide::Back:
-            target = GL_TEXTURE_CUBE_MAP_NEGATIVE_Z;
-            break;
+                target = GL_TEXTURE_CUBE_MAP_NEGATIVE_Z;
+                break;
             case CubeTextureSide::Front:
-            target = GL_TEXTURE_CUBE_MAP_POSITIVE_Z;
-            break;
+                target = GL_TEXTURE_CUBE_MAP_POSITIVE_Z;
+                break;
             case CubeTextureSide::Top:
-            target = GL_TEXTURE_CUBE_MAP_POSITIVE_Y;
-            break;
+                target = GL_TEXTURE_CUBE_MAP_POSITIVE_Y;
+                break;
             case CubeTextureSide::Bottom:
-            target = GL_TEXTURE_CUBE_MAP_NEGATIVE_Y;
-            break;
+                target = GL_TEXTURE_CUBE_MAP_NEGATIVE_Y;
+                break;
             case CubeTextureSide::Left:
-            target = GL_TEXTURE_CUBE_MAP_NEGATIVE_X;
-            break;
+                target = GL_TEXTURE_CUBE_MAP_NEGATIVE_X;
+                break;
             case CubeTextureSide::Right:
-            target = GL_TEXTURE_CUBE_MAP_POSITIVE_X;
-            break;
+                target = GL_TEXTURE_CUBE_MAP_POSITIVE_X;
+                break;
+            default:
+                break;
         }
 
         return target;
@@ -572,6 +578,8 @@ namespace Core {
                 return GL_UNSIGNED_INT;
             case AttributeType::Int:
                 return GL_INT;
+            default:
+                break;
         }
         return 0;
     }
@@ -605,7 +613,8 @@ namespace Core {
                 return GL_DEPTH_COMPONENT24;
             case TextureFormat::DEPTH32:
                 return GL_DEPTH_COMPONENT32;
-
+            default:
+                break;
         }
         return GL_RGBA8;
     }
@@ -627,9 +636,9 @@ namespace Core {
                 return GL_RG;
             case TextureFormat::DEPTH:
                 return GL_DEPTH_COMPONENT;
-
+            default:
+                break;
         }
-
         return GL_RGBA;
     }
 
@@ -648,8 +657,9 @@ namespace Core {
                 return GL_FLOAT;
             case TextureFormat::RG16F:
                 return GL_FLOAT;
+            default:
+                break;
         }
-
         return GL_UNSIGNED_BYTE;
     }
 
@@ -661,6 +671,8 @@ namespace Core {
                 return GL_POINT;
             case RenderStyle::Line:
                 return GL_LINE;
+            default:
+                break;
         }
         return GL_FILL;
     }
@@ -671,6 +683,8 @@ namespace Core {
                 return GL_POINTS;
             case PrimitiveType::Triangles:
                 return GL_TRIANGLES;
+            default:
+                break;
         }
         return GL_TRIANGLES;
     }
@@ -679,28 +693,30 @@ namespace Core {
         switch (function) {
             case RenderState::StencilFunction::Never:
                 return GL_NEVER;
-            break;
+                break;
             case RenderState::StencilFunction::Less:
                 return GL_LESS;
-            break;
+                break;
             case RenderState::StencilFunction::LessThanOrEqual:
                 return GL_LEQUAL;
-            break;
+                break;
             case RenderState::StencilFunction::Greater:
                 return GL_GREATER;
-            break;
+                break;
             case RenderState::StencilFunction::GreaterThanOrEqual:
                 return GL_GEQUAL;
-            break;
+                break;
             case RenderState::StencilFunction::Equal:
                 return GL_EQUAL;
-            break;
+                break;
             case RenderState::StencilFunction::NotEqual:
                 return GL_NOTEQUAL;
-            break;
+                break;
             case RenderState::StencilFunction::Always:
                 return GL_ALWAYS;
-            break;
+                break;
+            default:
+                break;
         }
         return GL_NEVER;
     }
@@ -709,28 +725,30 @@ namespace Core {
         switch (action) {
             case RenderState::StencilAction::Keep:
                 return GL_KEEP;
-            break;
+                break;
             case RenderState::StencilAction::Zero:
                 return GL_ZERO;
-            break;
+                break;
             case RenderState::StencilAction::Replace:
                 return GL_REPLACE;
-            break;
+                break;
             case RenderState::StencilAction::Increment:
                 return GL_INCR;
-            break;
+                break;
             case RenderState::StencilAction::IncrementWrap:
                 return GL_INCR_WRAP;
-            break;
+                break;
             case RenderState::StencilAction::Decrement:
                 return GL_DECR;
-            break;
+                break;
             case RenderState::StencilAction::DecrementWrap:
                 return GL_DECR_WRAP;
-            break;
+                break;
             case RenderState::StencilAction::Invert:
                 return GL_INVERT;
-            break;
+                break;
+            default:
+                break;
         }
         return GL_KEEP;
     }
@@ -745,6 +763,8 @@ namespace Core {
                 return GL_COLOR_ATTACHMENT2;
             case 3:
                 return GL_COLOR_ATTACHMENT3;
+            default:
+                break;
         }
         return -1;
     }
