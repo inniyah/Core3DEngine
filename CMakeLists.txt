@@ -2,10 +2,17 @@ cmake_minimum_required(VERSION 3.6)
 
 project(Core)
 
+# Set Core library version info
+set(CORE_VERSION "0.0.1")  # Full version: used in libCore.so.x.y.z
+set(CORE_SOVERSION "0")    # SONAME version: libCore.so.x -> libCore.so.x.y.z
+
+# Option to build shared or static library
+option(BUILD_SHARED_LIBS "Build Core as shared library" ON)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -fPIC")
 
 set(OpenGL_GL_PREFERENCE GLVND)
-find_package (OpenGL REQUIRED)
+find_package(OpenGL REQUIRED)
 
 set(EXECUTABLE_NAME core)
 
@@ -390,7 +397,20 @@ set(SOURCE_FILES
     GL/RenderTarget2DGL.cpp
     GL/RenderTargetCubeGL.cpp)
 
+# Build shared or static library based on BUILD_SHARED_LIBS
 add_library(${EXECUTABLE_NAME} ${SOURCE_FILES})
+
+# Apply shared library properties if enabled
+if(BUILD_SHARED_LIBS)
+    set_target_properties(${EXECUTABLE_NAME} PROPERTIES
+        VERSION ${CORE_VERSION}
+        SOVERSION ${CORE_SOVERSION}
+        OUTPUT_NAME "core"
+    )
+    target_compile_definitions(${EXECUTABLE_NAME} PRIVATE CORE_BUILD_SHARED)
+else()
+    target_compile_definitions(${EXECUTABLE_NAME} PRIVATE CORE_STATIC_BUILD)
+endif()
 
 include_directories(/usr/local/include)
 target_link_libraries(${EXECUTABLE_NAME} ${OPENGL_LIBRARIES})
@@ -399,6 +419,7 @@ target_link_libraries(${EXECUTABLE_NAME} ${OPENGL_LIBRARIES})
 #set(DEVIL_DIR <Set directory here>)
 #include_directories(${DEVIL_DIR}/include)
 #link_directories(${DEVIL_DIR}/build/lib/x64/)
+
 target_link_libraries(${EXECUTABLE_NAME} IL)
 
 #if you need to specify a custom Assimp location, uncomment and set the following lines as appropriate
@@ -415,6 +436,7 @@ target_link_libraries(${EXECUTABLE_NAME} IL)
 
 target_link_libraries(${EXECUTABLE_NAME} assimp)
 
+# Create include/Core/ directory structure
 add_custom_target(MakeIncludeDir ALL COMMAND ${CMAKE_COMMAND} -E make_directory "include")
 add_custom_target(MakeIncludeCoreDir ALL COMMAND ${CMAKE_COMMAND} -E make_directory "include/Core")
 
@@ -440,4 +462,3 @@ foreach(file_i ${INCLUDE_FILES})
 endforeach(file_i)
 
 target_compile_definitions(core PRIVATE CORE_USE_PRIVATE_INCLUDES=1)
-

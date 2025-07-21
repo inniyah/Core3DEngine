@@ -7,6 +7,9 @@
 
 namespace Core {
 
+    std::shared_ptr<MeshOutlinePostProcessor> MeshOutlinePostProcessor::_instance;
+    std::mutex MeshOutlinePostProcessor::_instance_mutex;
+
     void MeshOutlinePostProcessor::PostProcess() {
         
     }
