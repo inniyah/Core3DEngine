@@ -140,8 +140,8 @@ const std::string MAX_POINT_LIGHTS_DEF = "const int MAX_POINT_LIGHTS = " + MAX_P
 const std::string MAX_DIRECTIONAL_LIGHTS_DEF = "const int MAX_DIRECTIONAL_LIGHTS = " + MAX_DIRECTIONAL_LIGHTS + ";\n";
 const std::string POINT_LIGHT_COUNT_DEF = "uniform int " + POINT_LIGHT_COUNT + ";\n";
 const std::string DIRECTIONAL_LIGHT_COUNT_DEF = "uniform int " + DIRECTIONAL_LIGHT_COUNT + ";\n";
-const std::string AMBIENTL_LIGHT_DEF = "unfirm int " + AMBIENT_LIGHT_COUNT + ";\n";
-const std::string AMBIENTL_IBL_LIGHT_DEF = "unfirm int " + AMBIENT_IBL_LIGHT_COUNT + ";\n";
+const std::string AMBIENTL_LIGHT_DEF = "uniform int " + AMBIENT_LIGHT_COUNT + ";\n";
+const std::string AMBIENTL_IBL_LIGHT_DEF = "uniform int " + AMBIENT_IBL_LIGHT_COUNT + ";\n";
 const std::string LIGHT_COUNT_DEF = "uniform int " + LIGHT_COUNT + ";\n";
 // Single-pass ambient IBL light parameters
 const std::string LIGHT_IRRADIANCE_MAP_DEF = "uniform samplerCube " + LIGHT_IRRADIANCE_MAP + "[" + MAX_LIGHTS + "];\n";
@@ -1015,7 +1015,7 @@ namespace Core {
 
         this->Lighting_Single_fragment =
             "#include \"LightingHeaderSingle\" \n"
-            "#include \"Lighting\" \n";
+            "#include \"Lighting(lightIndex=0)\" \n";
 
         this->Lighting_Multi_vertex =
             "#include \"LightingHeaderMulti\" \n"
@@ -1863,7 +1863,7 @@ namespace Core {
             "uniform float roughness; \n"
 
             "void main() \n"
-            "{  \n"		
+            "{  \n"
             "    vec3 N = normalize(localPos.xyz); \n"    
             "    vec3 R = N; \n"
             "    vec3 V = R; \n"
