@@ -1,3 +1,5 @@
+#pragma once
+
 enum class CubeFace {
     Forward = 0,
     Backward = 1,

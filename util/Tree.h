@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <stack>
+#include <functional>
 #include <string>
 #include <new>
 
