@@ -119,7 +119,7 @@ namespace Core {
         void buildRenderListFromObjects(std::vector<WeakPointer<Object3D>>& objects, RenderList& renderList);
 
 
-void buildRenderListFromObjectsP(std::vector<WeakPointer<Object3D>>& objects, RenderList& renderList);
+        void buildRenderListFromObjectsP(std::vector<WeakPointer<Object3D>>& objects, RenderList& renderList);
 
         static Bool isShadowCastingCapableLight(WeakPointer<Light> light);
         static Bool compareLights (WeakPointer<Light> a, WeakPointer<Light> b);
